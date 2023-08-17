@@ -52,6 +52,8 @@ public class PersonController {
                              @QueryParam("salary") String salary){
 
         try {
+            if(name == null || family == null || name.isEmpty() || family.isEmpty())
+                throw new ValidationException();
             return JSON.getJson(PersonService.getInstance().asyncSave(new Person()
                     .setName(name)
                     .setFamily(family)
@@ -76,6 +78,8 @@ public class PersonController {
                          @QueryParam("recordversion") String recordVersion) {
 
         try {
+            if(personId == null || recordVersion == null || personId.isEmpty() || recordVersion.isEmpty())
+                throw new ValidationException();
             Person person = new Person()
                     .setPersonId(Long.parseLong(personId))
                     .setName(name)
@@ -98,6 +102,8 @@ public class PersonController {
     @Produces("application/json")
     public String remove(@QueryParam("id") String personId, @QueryParam("recordversion") String recordVersion) {
         try {
+            if(personId == null || recordVersion == null || personId.isEmpty() || recordVersion.isEmpty())
+                throw new ValidationException();
             return JSON.getJson(PersonService
                     .getInstance()
                     .remove(new Person()
@@ -118,6 +124,8 @@ public class PersonController {
     @Produces("application/json")
     public String findOne (@QueryParam("id")String personId){
         try {
+            if(personId == null || personId.isEmpty())
+                throw new ValidationException();
             return JSON.getJson(PersonService.getInstance().findOne(new Person().setPersonId(Long.parseLong(personId))));
         } catch (Exception e) {
             try {
