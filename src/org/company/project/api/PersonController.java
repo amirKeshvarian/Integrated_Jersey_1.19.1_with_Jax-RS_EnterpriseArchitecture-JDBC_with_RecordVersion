@@ -2,6 +2,7 @@ package org.company.project.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.log4j.Logger;
+import org.company.project.common.annotation.TestURL;
 import org.company.project.common.exception.ValidationException;
 import org.company.project.common.json.JSON;
 import org.company.project.common.wrapper.ErrorHandler;
@@ -18,6 +19,7 @@ import javax.ws.rs.QueryParam;
 public class PersonController {
     private static final Logger LOGGER = Logger.getLogger(PersonController.class);
 
+    @TestURL(url = "http://localhost:8080/api/person/save.do?name=nnn&family=fff&salary=1111")
     @Path("/save.do")
     @GET//@POST
     @Produces("application/json")
@@ -41,6 +43,7 @@ public class PersonController {
             }
         }
     }
+    @TestURL(url = "http://localhost:8080/api/person/asyncSave.do?name=nnn&family=fff&salary=1111")
     @Path("/asyncSave.do")
     @GET//@POST
     @Produces("application/json")
@@ -62,7 +65,7 @@ public class PersonController {
             }
         }
     }
-
+    @TestURL(url = "http://localhost:8080/api/person/change.do?id=1&name=nnn&family=fff&salary=222&recordversion=0")
     @Path("/change.do")
     @GET//@POST
     @Produces("application/json")
@@ -89,7 +92,7 @@ public class PersonController {
             }
         }
     }
-
+    @TestURL(url = "http://localhost:8080/api/person/remove.do?id=1&recordversion=0")
     @Path("/remove.do")
     @GET//@POST
     @Produces("application/json")
@@ -109,6 +112,7 @@ public class PersonController {
             }
         }
     }
+    @TestURL(url = "http://localhost:8080/api/person/findOne.do?id=1")
     @Path("/findOne.do")
     @GET
     @Produces("application/json")
@@ -124,6 +128,7 @@ public class PersonController {
             }
         }
     }
+    @TestURL(url = "http://localhost:8080/api/person/findAll.do")
     @Path("/findAll.do")
     @GET
     @Produces("text/plain")
